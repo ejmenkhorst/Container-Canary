@@ -1,0 +1,6 @@
+@Canary_API_HostAddress = http://localhost:5001
+
+GET {{Canary_API_HostAddress}}/canary
+Accept: application/json
+
+###

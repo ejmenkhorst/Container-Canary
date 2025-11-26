@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  canary-api:
+    build:
+      context: ./ContainerCanary/Canary-API
+    image: container-canary-api:latest
+    ports:
+      - "5001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
