@@ -1,6 +1,6 @@
 # Container-Canary
 
-This project is a Proof of Concept demonstrating automated testing of a .NET Core API running in containers and calling a mock server. It is designed to be used in CI/CD pipelines to validate application behavior in isolated, reproducible test environments.
+This project is a Proof of Concept demonstrating automated testing of a .NET Core API running in containers and calling a mock server. It is designed to be used in CI/CD pipelines to validate application behavior in isolated, reproducable test environments.
 
 ## Architecture
 
