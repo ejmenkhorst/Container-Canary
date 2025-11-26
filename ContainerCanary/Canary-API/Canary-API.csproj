@@ -5,6 +5,10 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace>Canary_API</RootNamespace>
+        <Version>1.0.0</Version>                    <!-- NuGet / informational version -->
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>  <!-- CLR assembly version -->
+        <FileVersion>1.0.0.0</FileVersion>          <!-- file version -->
+        <InformationalVersion>1.0.0+git</InformationalVersion> <!-- optional -->
     </PropertyGroup>
 
     <ItemGroup>
