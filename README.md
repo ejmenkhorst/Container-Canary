@@ -13,8 +13,8 @@ This project is a Proof of Concept demonstrating automated testing of a .NET Cor
                                    |
                                    v
 +-----------------------+   HTTP    +----------------------+
-|        API            |---------> |  Mock or Real Service|
-| (System Under Test)   | <---------|   [Container]        |
+|        Canary API     |---------> |  Name Generator Mock |
+| (System Under Test)   | <---------|   Service [Container]|
 |      [Container]      |           +----------------------+
 +-----------------------+
 
@@ -25,9 +25,9 @@ This project is a Proof of Concept demonstrating automated testing of a .NET Cor
 
 ### Components
 
-- API – Simple .NET Core Web API with one endpoint calling the mock server.
-- Mock Server – Returns predefined responses for consistent integration tests.
-- Test Solution – Automated integration tests running against the containerized API.
+- Canary API – Simple .NET Core Web API with one endpoint calling the mock server.
+- Name Generator Mock Server – Returns predefined responses for consistent integration tests.
+- Test Solution – Automated integration tests running against the containerized solution (Canary API and Name Generator Mock Service).
 - docker-compose – Orchestrates API, mock server, and test runner locally or in CI.
 
 ### Goals
@@ -42,6 +42,11 @@ This project is a Proof of Concept demonstrating automated testing of a .NET Cor
 
 Build and run the Canary-API locally with the following commands root directory of the repository:  
 ``` docker compose build canary-api ```  
+
+### Name Generator Mock Service
+
+Build and run the NAmeGeneratorMockService locally with the following commands root directory of the repository:  
+``` docker compose build name-generator-mockservice ```  
 
 ### Whole solution  
 
