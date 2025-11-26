@@ -36,6 +36,17 @@ This project is a Proof of Concept demonstrating automated testing of a .NET Cor
 - Enable fast and consistent integration checks in CI/CD.
 - Provide a clean blueprint for automated regression testing.
 
+## Run application local environment
+
+### Canary API
+
+Build and run the Canary-API locally with the following commands root directory of the repository:  
+``` docker compose build canary-api ```  
+
+### Whole solution  
+
+``` docker-compose up -d ```
+
 ## CI/CD Pipeline
 
 This project includes a **two-stage GitHub Actions pipeline** to automate building, containerizing, and testing the application in isolated containers.
