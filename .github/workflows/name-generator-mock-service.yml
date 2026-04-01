@@ -1,11 +1,11 @@
-name: Build and push Canary-API image
+name: Build and push NameGeneratorMockService image
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'ContainerCanary/Canary-API/**'
-  workflow_dispatch:     # allows manual run from the Actions UI
+      - 'ContainerCanary/NameGeneratorMockService/**'
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -30,9 +30,9 @@ jobs:
       - name: Build and push image
         uses: docker/build-push-action@v4
         with:
-          context: ./ContainerCanary/Canary-API
-          file: ./ContainerCanary/Canary-API/Dockerfile
+          context: ./ContainerCanary/NameGeneratorMockService
+          file: ./ContainerCanary/NameGeneratorMockService/Dockerfile
           push: true
           tags: |
-            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/container-canary-api:latest
-            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/container-canary-api:${{ github.sha }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/container-canary-mockservice:latest
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/container-canary-mockservice:${{ github.sha }}

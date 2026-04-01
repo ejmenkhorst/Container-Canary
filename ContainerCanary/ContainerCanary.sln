@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Canary-API", "Canary-API\Canary-API.csproj", "{DD0A9671-00B5-4881-98E8-0E0E9EA3B454}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NameGeneratorMockService", "NameGeneratorMockService\NameGeneratorMockService.csproj", "{AE9FFCB2-F1C6-4D82-ACBF-3D31EEF136A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{DD0A9671-00B5-4881-98E8-0E0E9EA3B454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD0A9671-00B5-4881-98E8-0E0E9EA3B454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD0A9671-00B5-4881-98E8-0E0E9EA3B454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE9FFCB2-F1C6-4D82-ACBF-3D31EEF136A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9FFCB2-F1C6-4D82-ACBF-3D31EEF136A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9FFCB2-F1C6-4D82-ACBF-3D31EEF136A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9FFCB2-F1C6-4D82-ACBF-3D31EEF136A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
