@@ -43,6 +43,11 @@ jobs:
     - name: Pull Mock Service image
       run: docker pull your-dockerhub-username/name-generator-mockservice:latest
 
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+
     - name: Start services
       run: |
         docker network create test-network
@@ -60,5 +65,5 @@ jobs:
       run: dotnet test ContainerCanary.IntegrationTests/ContainerCanary.IntegrationTests.csproj --logger trx
 
     - name: Tear down services
-      if: always()
+      if: always() # ensures this step runs even if previous steps fail
       run: docker-compose down
