@@ -42,10 +42,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Pull Canary API image
-      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/canary-api:latest
+      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/container-canary-api:latest
 
     - name: Pull Mock Service image
-      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/name-generator-mockservice:latest
+      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/container-canary-mockservice:latest
 
     - name: Install Docker Compose
       run: |
@@ -55,8 +55,8 @@ jobs:
     - name: Start services
       run: |
         docker network create test-network
-        docker run -d --name canary-api --network test-network -p 5001:5001 ${{ secrets.DOCKERHUB_USERNAME }}/canary-api:latest
-        docker run -d --name mock-service --network test-network -p 5002:5002 ${{ secrets.DOCKERHUB_USERNAME }}/name-generator-mockservice:latest
+        docker run -d --name canary-api --network test-network -p 5001:5001 ${{ secrets.DOCKERHUB_USERNAME }}/container-canary-api:latest
+        docker run -d --name mock-service --network test-network -p 5002:5002 ${{ secrets.DOCKERHUB_USERNAME }}/container-canary-mockservice:latest
 
     - name: Wait for services to be ready
       run: |
