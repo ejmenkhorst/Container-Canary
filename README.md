@@ -43,10 +43,14 @@ This project is a Proof of Concept demonstrating automated testing of a .NET Cor
 Build and run the Canary-API locally with the following commands root directory of the repository:  
 ``` docker compose build canary-api ```  
 
+Access the Canary-API locally via [http://localhost:5001/canary](http://localhost:5001/canary)
+
 ### Name Generator Mock Service
 
 Build and run the NameGeneratorMockService locally with the following commands root directory of the repository:  
 ``` docker compose build name-generator-mockservice ```  
+
+Access the NameGeneratorMockService locally via [http://localhost:5002/generateName](http://localhost:5002/generateName)
 
 ### Whole solution  
 
