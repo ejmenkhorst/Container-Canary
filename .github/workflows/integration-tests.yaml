@@ -35,13 +35,17 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Log in to Docker Hub
-      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+      uses: docker/login-action@v2
+      with:
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Pull Canary API image
-      run: docker pull your-dockerhub-username/canary-api:latest
+      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/canary-api:latest
 
     - name: Pull Mock Service image
-      run: docker pull your-dockerhub-username/name-generator-mockservice:latest
+      run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/name-generator-mockservice:latest
 
     - name: Install Docker Compose
       run: |
@@ -51,8 +55,8 @@ jobs:
     - name: Start services
       run: |
         docker network create test-network
-        docker run -d --name canary-api --network test-network -p 5001:5001 your-dockerhub-username/canary-api:latest
-        docker run -d --name mock-service --network test-network -p 5002:5002 your-dockerhub-username/name-generator-mockservice:latest
+        docker run -d --name canary-api --network test-network -p 5001:5001 ${{ secrets.DOCKERHUB_USERNAME }}/canary-api:latest
+        docker run -d --name mock-service --network test-network -p 5002:5002 ${{ secrets.DOCKERHUB_USERNAME }}/name-generator-mockservice:latest
 
     - name: Wait for services to be ready
       run: |
