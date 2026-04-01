@@ -1,0 +1,64 @@
+name: Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+  workflow_dispatch:     # allows manual run from the Actions UI
+
+jobs:
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:20.10.16
+        options: --privileged
+        ports:
+          - 5001:5001
+          - 5002:5002
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+    - name: Pull Canary API image
+      run: docker pull your-dockerhub-username/canary-api:latest
+
+    - name: Pull Mock Service image
+      run: docker pull your-dockerhub-username/name-generator-mockservice:latest
+
+    - name: Start services
+      run: |
+        docker network create test-network
+        docker run -d --name canary-api --network test-network -p 5001:5001 your-dockerhub-username/canary-api:latest
+        docker run -d --name mock-service --network test-network -p 5002:5002 your-dockerhub-username/name-generator-mockservice:latest
+
+    - name: Wait for services to be ready
+      run: |
+        until curl -s http://localhost:5001/canary; do
+          echo "Waiting for the Canary API to be up and running..."
+          sleep 5
+        done
+
+    - name: Run integration tests
+      run: dotnet test ContainerCanary.IntegrationTests/ContainerCanary.IntegrationTests.csproj --logger trx
+
+    - name: Tear down services
+      if: always()
+      run: docker-compose down
